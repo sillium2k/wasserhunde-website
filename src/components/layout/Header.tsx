@@ -37,6 +37,20 @@ export default function Header() {
     setIsMobileMenuOpen(false)
   }, [location])
 
+  // Handle scroll after navigation
+  useEffect(() => {
+    if (location.pathname === '/' && location.state?.scrollToWarteliste) {
+      // Wait for DOM to be ready
+      const timer = setTimeout(() => {
+        const element = document.getElementById('warteliste')
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 300)
+      return () => clearTimeout(timer)
+    }
+  }, [location])
+
   const scrollToContact = () => {
     if (location.pathname === '/') {
       const element = document.getElementById('warteliste')
@@ -44,13 +58,8 @@ export default function Header() {
         element.scrollIntoView({ behavior: 'smooth' })
       }
     } else {
-      navigate('/')
-      setTimeout(() => {
-        const element = document.getElementById('warteliste')
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' })
-        }
-      }, 100)
+      // Navigate to home with state to trigger scroll
+      navigate('/', { state: { scrollToWarteliste: true } })
     }
   }
 

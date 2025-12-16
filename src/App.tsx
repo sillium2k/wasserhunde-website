@@ -9,7 +9,7 @@ import ContactPage from './pages/ContactPage'
 
 function App() {
   return (
-    <Router>
+    <Router basename="/wasserhunde-website">
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />

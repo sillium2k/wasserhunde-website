@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Menu, X, Heart } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Button from '../common/Button'
@@ -17,6 +17,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
 
   // On subpages (not home), always show solid header
   const isHomePage = location.pathname === '/'
@@ -43,7 +44,13 @@ export default function Header() {
         element.scrollIntoView({ behavior: 'smooth' })
       }
     } else {
-      window.location.href = '/#warteliste'
+      navigate('/')
+      setTimeout(() => {
+        const element = document.getElementById('warteliste')
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 100)
     }
   }
 

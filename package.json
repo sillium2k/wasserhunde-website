@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
-  "homepage": "https://timfahje.github.io/wasserhunde-website",
+  "homepage": "https://sillium2k.github.io/wasserhunde-website",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
